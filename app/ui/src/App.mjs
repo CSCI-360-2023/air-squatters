@@ -8,13 +8,24 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { GoogleLogin } from '@react-oauth/google';
  
 export function App() {
-    return (
-      <div>
-        <h1 class='center'>Sorry! Still working on routing right now</h1>
-        <div class='center'>Copy the body of the file you wish to view to this file!</div>
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+const errorMessage = (error) => {
+    console.log(error);
+  };
+return (
+    <div>
+      <div className='card'>
+        <h1 class="center" >Log In</h1>
+        <br />
+        <br />
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
       </div>
-    );
+    </div>
+  )
 }
 export default App;
