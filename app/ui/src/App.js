@@ -14,10 +14,10 @@ export function App() {
   const responseMessage = (response) => {
     console.log(response);
   };
-const errorMessage = (error) => {
+  const errorMessage = (error) => {
     console.log(error);
   };
-return (
+  return (
     <div>
       <div className='card'>
         <h1 class="center" >Log In</h1>
