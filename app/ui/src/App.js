@@ -105,6 +105,16 @@ function App() {
             ) : (
                 <div class="center">
                 <h2>Log In To Ticketing System</h2>
+                <div>
+                  Username:&nbsp;
+                  <input type="text" name="Username" placeholder="Enter Username"></input>
+                </div>
+                <br/>
+                <div>
+                  Password:&nbsp;&nbsp;
+                  <input type="password" name="Password" placeholder="Enter Password"></input>
+                </div>
+                <br/>
                 <button onClick={() => login()}>Sign in with Google</button>
                 </div>
             )}
