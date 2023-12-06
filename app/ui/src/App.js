@@ -27,10 +27,20 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function App() {
     const [ user, setUser ] = useState([]);
     const [ profile, setProfile ] = useState([]);
+    const navigate = useNavigate();
+
+    const navigateToProfile = () => {
+      navigate('/profile');
+    };
+
+    const navigateHome = () => {
+      navigate('/');
+    };
 
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),
@@ -76,7 +86,11 @@ function App() {
                         >
                             Home
                         </Typography>
-                        <Button onClick={() => login()} color="inherit">Profile</Button>
+                        <Button onClick={navigateToProfile} color="inherit">Profile</Button>
+                        <Routes>
+                          <Route path="/profile" element={<Profile />} />
+                          <Route path="/" element={<Home />} />
+                        </Routes>
                     </Toolbar>
                 </AppBar>
                 <div class="center">Search:
@@ -84,6 +98,8 @@ function App() {
                   <button>Search</button>
                   <br/>
                   <button onClick={logOut}>Log out</button>
+                  <br/>
+                  <button onClick={navigateHome}>Home</button>
                 </div>
               </div>
             ) : (
@@ -96,3 +112,9 @@ function App() {
     );
 }
 export default App;
+
+function Home() {
+}
+
+function Profile() {
+}
