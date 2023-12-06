@@ -39,8 +39,16 @@ function App() {
     };
 
     const navigateHome = () => {
-      navigate('/');
+      navigate('/main');
     };
+
+    const navigateSignUp = () => {
+      navigate('/signup');
+    };
+
+    const navigateLogIn = () => {
+      navigate('/')
+    }
 
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),
@@ -70,6 +78,7 @@ function App() {
     const logOut = () => {
         googleLogout();
         setProfile(null);
+        navigateLogIn()
     };
 
     return (
@@ -87,23 +96,29 @@ function App() {
                             Home
                         </Typography>
                         <Button onClick={navigateToProfile} color="inherit">Profile</Button>
-                        <Routes>
-                          <Route path="/profile" element={<Profile />} />
-                          <Route path="/" element={<Home />} />
-                        </Routes>
                     </Toolbar>
                 </AppBar>
+                <Routes>
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/main" element={<Home />} />
+                  <Route path="/" element={<LogIn />} />
+                </Routes>
                 <div class="center">Search:
                   <input type="Text" placeholder="Search for Events" readonly></input>
                   <button>Search</button>
                   <br/>
-                  <button onClick={logOut}>Log out</button>
+                  <button onClick={() => logOut()}>Log out</button>
                   <br/>
                   <button onClick={navigateHome}>Home</button>
                 </div>
               </div>
             ) : (
                 <div class="center">
+                  <Routes>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/main" element={<Home />} />
+                    <Route path="/" element={<LogIn />} />
+                  </Routes>
                 <h2>Log In To Ticketing System</h2>
                 <div>
                   Username:&nbsp;
@@ -115,6 +130,10 @@ function App() {
                   <input type="password" name="Password" placeholder="Enter Password"></input>
                 </div>
                 <br/>
+                <button onClick={navigateHome}>Log In</button>
+                <br/>
+                <button onClick={navigateSignUp}>Sign Up</button>
+                <br/>
                 <button onClick={() => login()}>Sign in with Google</button>
                 </div>
             )}
@@ -122,6 +141,9 @@ function App() {
     );
 }
 export default App;
+
+function LogIn() {
+}
 
 function Home() {
 }
