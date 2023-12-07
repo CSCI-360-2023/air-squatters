@@ -25,6 +25,13 @@ public class TicketSystem {
     // NEW SHIT
     LinkedList<Account> accountLinkedList = new LinkedList<Account>();
 
+
+    public void newUserCreation(int cofcId, String firstName, String lastName, String password, String email ) {
+        Account temp = new Account(cofcId, firstName, lastName, password, email);
+        accountLinkedList.add(temp);
+
+    }
+
     public void logIn(Integer cofcID, String password) {
         for (int i = 0; i < accountLinkedList.size(); i++) {
             if (cofcID == accountLinkedList.get(i).getCofcId() && password == accountLinkedList.get(i).getPassword()) {
@@ -59,19 +66,18 @@ public class TicketSystem {
             return "LOG IN YOU IDIOT";
         }
         
+    }
+
+
     public ArrayList<Event> searchForEvents(String string) {
             ArrayList<Event> eventArrayList = new ArrayList<Event>();
             for (int i = 0; i < eventLinkedList.size(); i++) {
-                if eventLinkedList.get(i).toString.contains(string) {
+                if ( eventLinkedList.get(i).toString.toLowerCase().contains(string.toLowerCase()) ) {
                     eventArrayList.add(eventLinkedList.get(i));
                 }
             }
             return eventArrayList;
-        }
     }
-
-
-
 
 
 
