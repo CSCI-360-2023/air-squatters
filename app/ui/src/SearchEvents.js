@@ -3,11 +3,12 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function SearchEvents() {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
     return (
       <div class="center">
@@ -23,7 +24,7 @@ function SearchEvents() {
             <Button onClick={() => {navigate(-1)}}color="inherit">Go Back</Button>
           </Toolbar>
         </AppBar>
-        <h1>Results</h1>
+        <h1>Results for "{location.state.searchVal}"</h1>
         <button onClick={() => {navigate('/purchase')}}color="inherit">Buy Now</button>
       </div>
     );
