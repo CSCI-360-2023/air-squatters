@@ -13,7 +13,9 @@ import java.awt.image.RenderedImage;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import jakarta.validation.OverridesAttribute;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 import net.sourceforge.barbecue.Barcode;
@@ -22,7 +24,8 @@ import net.sourceforge.barbecue.BarcodeImageHandler;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ticket {
+@Data
+public final class Ticket {
     /**
      * int containing the ticket number of the ticket
      */
@@ -73,5 +76,12 @@ public class Ticket {
         File jpeg = new File("barcode.jpg");
         ImageIO.write(barcode, "jpg", jpeg);
         return jpeg;
+    }
+
+    @Override
+    public String toString() {
+        return "Event: " + this.getEvent() +
+            "\nOwner: " + this.getOwner().toString() +
+            "\nTicket Number: " + this.getTicketNumber();
     }
 }
