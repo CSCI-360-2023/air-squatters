@@ -27,8 +27,16 @@ public class TicketSystem {
 
 
     public void newUserCreation(int cofcId, String firstName, String lastName, String password, String email ) {
+        for (int i = 0; i < accountLinkedList.size(); i++) {
+            if (accountLinkedList.get(i).getCofcId == cofcId) {
+                System.out.println("CofCID already in use");
+                break;
+            }
+        }
         Account temp = new Account(cofcId, firstName, lastName, password, email);
         accountLinkedList.add(temp);
+        Integer cofcIdInt = Integer.valueOf(cofcId);
+        logIn(cofcIdInt, password);
 
     }
 
@@ -49,7 +57,7 @@ public class TicketSystem {
         Seat tempSeat = new Seat();
         Ticket tick = new Ticket(event, tempSeat);
         if (activeAccount.isLoggedIn() == true) {
-            if (bool == false) {
+            if (!bool) {
                 for (int i = 0; i < num; i++) {
                     activeAccount.getTickets().add(tick);
                 }
