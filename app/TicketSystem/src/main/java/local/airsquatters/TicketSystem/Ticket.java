@@ -3,13 +3,18 @@ package local.airsquatters.TicketSystem;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
+import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeFactory;
@@ -21,6 +26,7 @@ public class Ticket {
     /**
      * int containing the ticket number of the ticket
      */
+    @Id @Generated
     private ObjectId ticketNumber;
 
     /**
@@ -56,11 +62,16 @@ public class Ticket {
         this.seat = seat;
     }
 
-    public static BufferedImage generateEAN13BarcodeImage(ObjectId barcodeText) throws Exception {
+    public static RenderedImage generateEAN13BarcodeImage(ObjectId barcodeText) throws Exception {
         Barcode barcode = BarcodeFactory.createEAN13(barcodeText.toString());
         barcode.setFont(null);
     
         return BarcodeImageHandler.getImage(barcode);
     }
-    
+
+    public static File toJpg(RenderedImage barcode) throws IOException {
+        File jpeg = new File("barcode.jpg");
+        ImageIO.write(barcode, "jpg", jpeg);
+        return jpeg;
+    }
 }
