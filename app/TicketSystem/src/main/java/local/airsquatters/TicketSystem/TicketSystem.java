@@ -27,6 +27,11 @@ public class TicketSystem {
 
 
     public void newUserCreation(int cofcId, String firstName, String lastName, String password, String email ) {
+        for (int i = 0; i < accountLinkedList.size(); i++) {
+            if (accountLinkedList.get(i).getCofcId == cofcId) {
+                System.out.println("CofCID already in use");
+            }
+        }
         Account temp = new Account(cofcId, firstName, lastName, password, email);
         accountLinkedList.add(temp);
         Integer cofcIdInt = Integer.valueOf(cofcId);
