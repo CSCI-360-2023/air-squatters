@@ -27,16 +27,21 @@ public class TicketSystem {
 
 
     public void newUserCreation(int cofcId, String firstName, String lastName, String password, String email ) {
-        for (int i = 0; i < accountLinkedList.size(); i++) {
-            if (accountLinkedList.get(i).getCofcId == cofcId) {
-                System.out.println("CofCID already in use");
-                break;
+        if ( password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{15,}$") ) {
+            for (int i = 0; i < accountLinkedList.size(); i++) {
+                    if (accountLinkedList.get(i).getCofcId == cofcId) {
+                        System.out.println("CofCID already in use");
+                        break;
+                    }
             }
+            Account temp = new Account(cofcId, firstName, lastName, password, email);
+            accountLinkedList.add(temp);
+            Integer cofcIdInt = Integer.valueOf(cofcId);
+            logIn(cofcIdInt, password);
+
         }
-        Account temp = new Account(cofcId, firstName, lastName, password, email);
-        accountLinkedList.add(temp);
-        Integer cofcIdInt = Integer.valueOf(cofcId);
-        logIn(cofcIdInt, password);
+       
+       
 
     }
 
