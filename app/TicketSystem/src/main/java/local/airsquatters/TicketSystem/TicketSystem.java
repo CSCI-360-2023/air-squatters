@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class TicketSystem {
 
-    public AccountService service = new AccountService();
-    public AccountController controller = new AccountController(service);
-
     private LinkedList<Seat> cart;
     private Account activeAccount;
 
@@ -29,19 +26,19 @@ public class TicketSystem {
 		return "Login page";
 	}
     
-    @GetMapping("/test")
-    public String apiTest() {
+    // @GetMapping("/test")
+    // public String apiTest() {
         
-        Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
+    //     Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
 
-        service.createAccount(testAccount);
-        try {
-            return service.findSingleAccount(123456).toString();
-        } catch(Exception e) {
-            e.printStackTrace();
-            return "Error";
-        }
-    }
+    //     service.createAccount(testAccount);
+    //     try {
+    //         return service.findSingleAccount(123456).toString();
+    //     } catch(Exception e) {
+    //         e.printStackTrace();
+    //         return "Error";
+    //     }
+    // }
 
     // TODO SWITCH TO TRY CATCH
     public void checkUserPass(Integer cofcID, String password) {
