@@ -22,6 +22,7 @@ public class Account {
     private String password;
     private String email;
     private LinkedList<Ticket> tickets;
+    private boolean loggedIn;
 
     public Account(int cofcId, String firstName, String lastName, String password, String email) {
         this.cofcNum = cofcId;
@@ -31,6 +32,7 @@ public class Account {
         this.lastName = lastName;
         this.firstName = firstName;
         this.tickets = new LinkedList<Ticket>();
+        this.loggedIn = false;
     }
     @Override
     public String toString() {

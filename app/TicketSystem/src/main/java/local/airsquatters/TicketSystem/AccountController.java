@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +26,15 @@ public class AccountController {
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     @Autowired
-	private final AccountService accountService;
+	private AccountService accountService;
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-	public AccountController(AccountService accountService) {
-		this.accountService = accountService;
-    }
+	// public AccountController(AccountService accountService) {
+	// 	this.accountService = accountService;
+    // }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<Account>> getAllAccounts() {
@@ -60,6 +66,34 @@ public class AccountController {
 //         e.printStackTrace();
 //     }
 	    LOG.info("Saving account.");
-	    return accountService.createAccount(account);
+	    return createAccount(account);
     }
+
+    public Account createAccount(int cofcId, String firstName, String lastName, String password, String email) {
+        Account account = new Account(cofcId, firstName, lastName, password, email);
+        try {
+            accountRepository.insert(account);
+            
+            mongoTemplate.update( Account.class ).apply(new Update().push("cofcId").value(account)).first();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+        return account;
+    }
+
+    public Account createAccount(Account account) {
+        try {
+            accountRepository.insert(account);
+            mongoTemplate.update(Account.class)
+                .apply(new Update().push("cofcId").value(account))
+                .first();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+        return account;
+    }
+
+
 }

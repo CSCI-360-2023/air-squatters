@@ -1,10 +1,16 @@
 package local.airsquatters.TicketSystem;
 
 public class PaymentVerification {
-    
-    public boolean paymentChecker() {
-        double secret = Math.random();
-        double othernum = Math.random();
-        return secret == othernum;
+    double secret;
+    double othernum;
+
+
+    public PaymentVerification() {
+        this.secret = Math.random();
+        this.othernum = Math.random();
+    }
+
+    public boolean checkPayment() {
+        return this.secret == this.othernum;
     }
 }

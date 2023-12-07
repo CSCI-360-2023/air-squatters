@@ -37,13 +37,6 @@ public final class Ticket {
      */
     private Event event;
 
-    
-    /**
-     * boolean indicating if the ticket is available
-     */
-    //TODO WHERE SHOULD THIS GO??
-    private boolean available;
-
     /**
      * Account indicating the owner of the ticket
      */
