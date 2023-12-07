@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.classic.Logger;
+
 import java.util.*;
   
 @RestController
@@ -17,7 +19,7 @@ import java.util.*;
 public class EventController {
     @Autowired
     private EventService eventService;
-
+    
     @GetMapping
     public ResponseEntity<List<Event>> getAllEvents() {
         return new ResponseEntity<List<Event>>(eventService.allEvents(), HttpStatus.OK);
@@ -25,6 +27,7 @@ public class EventController {
 
     @GetMapping("/{eventName}")
     public ResponseEntity<Event> getSingleEvent(@PathVariable String eventName) {
+        System.out.print("This is " + eventService.singleEvent(eventName).toString());
         return new ResponseEntity<Event>(eventService.singleEvent(eventName), HttpStatus.OK);
     }
 }

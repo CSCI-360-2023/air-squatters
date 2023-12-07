@@ -8,5 +8,8 @@
     "toolbar": "^0.0.5",
     "typography": "^0.16.24",
     "ui": "file:app/ui"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
   }
 }
