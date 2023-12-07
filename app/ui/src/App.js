@@ -82,36 +82,35 @@ function App() {
     };
 
     return (
-        <div>
-            {profile ? (
-              <div>
-                <AppBar position="static">
-                    <Toolbar>
-         
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{ flexGrow: 1 }}
-                        >
-                            Home
-                        </Typography>
-                        <Button onClick={navigateToProfile} color="inherit">Profile</Button>
-                    </Toolbar>
-                </AppBar>
-                <Routes>
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/main" element={<Home />} />
-                  <Route path="/" element={<LogIn />} />
-                </Routes>
-                <div class="center">Search:
-                  <input type="Text" placeholder="Search for Events" readonly></input>
-                  <button>Search</button>
-                  <br/>
-                  <button onClick={() => logOut()}>Log out</button>
-                  <br/>
-                  <button onClick={navigateHome}>Home</button>
-                </div>
-              </div>
+      <div>
+        {profile ? (
+          <div>
+            <AppBar position="static">
+              <Toolbar>
+                <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1 }}
+                >
+                  Home
+                </Typography>
+                <Button onClick={navigateToProfile} color="inherit">Profile</Button>
+              </Toolbar>
+            </AppBar>
+            <Routes>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/main" element={<Home />} />
+              <Route path="/" element={<LogIn />} />
+            </Routes>
+            <div class="center">Search:
+                <input type="Text" placeholder="Search for Events" readonly></input>
+                <button>Search</button>
+                <br/>
+                <button onClick={() => logOut()}>Log out</button>
+                <br/>
+                <button onClick={navigateHome}>Home</button>
+            </div>
+          </div>
             ) : (
                 <div class="center">
                   <Routes>
@@ -137,7 +136,7 @@ function App() {
                 <button onClick={() => login()}>Sign in with Google</button>
                 </div>
             )}
-        </div>
+      </div>
     );
 }
 export default App;
