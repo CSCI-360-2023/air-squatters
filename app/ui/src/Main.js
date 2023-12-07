@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function App() {
 
   const navigate = useNavigate();
+  const [searchVal, setSearchVal] = useState('')
 
     return (
       <div>
@@ -24,8 +25,8 @@ function App() {
           </Toolbar>
         </AppBar>
         <div class="center">Search:
-            <input type="Text" placeholder="Search for Events" readonly></input>
-            <button onClick={() => {navigate('/results')}}>Search</button>
+            <input type="Text" onChange={event => {setSearchVal(event.target.value)}} placeholder="Search for Events" readonly></input>
+            <button onClick={() => {navigate('/results', {replace: true, state:{searchVal}})}}>Search</button>
             <br/>
             <button onClick={() => {navigate('/purchase')}}color="inherit">Buy Now</button>
             <br/>
