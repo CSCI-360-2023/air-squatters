@@ -26,19 +26,19 @@ public class TicketSystem {
 		return "Login page";
 	}
     
-    // @GetMapping("/test")
-    // public String apiTest() {
-        
-    //     Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
+    @GetMapping("/test")
+    public String apiTest() {
+        AccountService service = new AccountService();
+        Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
 
-    //     service.createAccount(testAccount);
-    //     try {
-    //         return service.findSingleAccount(123456).toString();
-    //     } catch(Exception e) {
-    //         e.printStackTrace();
-    //         return "Error";
-    //     }
-    // }
+        service.createAccount(testAccount);
+        try {
+            return service.findSingleAccount(123456).toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
 
     // TODO SWITCH TO TRY CATCH
     public void checkUserPass(Integer cofcID, String password) {
