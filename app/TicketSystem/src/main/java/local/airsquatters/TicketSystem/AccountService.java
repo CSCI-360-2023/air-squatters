@@ -25,23 +25,30 @@ public class AccountService {
 
     public Account createAccount(int cofcId, String firstName, String lastName, String password, String email) {
         Account account = new Account(cofcId, firstName, lastName, password, email);
-        accountRepository.insert(account);
-
-        mongoTemplate.update(Account.class)
-            .apply(new Update().push("cofcIds").value(account))
-            .first();
-
-            return account;
+        try {
+            accountRepository.insert(account);
+            
+            mongoTemplate.update(Account.class)
+                .apply(new Update().push("cofcIds").value(account))
+                .first();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+        return account;
     }
 
     public Account createAccount(Account account) {
-        accountRepository.insert(account);
-
-        mongoTemplate.update(Account.class)
-            .apply(new Update().push("cofcIds").value(account))
-            .first();
-
-            return account;
+        try {
+            accountRepository.insert(account);
+            mongoTemplate.update(Account.class)
+                .apply(new Update().push("cofcIds").value(account))
+                .first();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+        return account;
     }
-
+    
 }

@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class TicketSystem {
 
-    public AccountService service = new AccountService();
-    public AccountController controller = new AccountController(service);
-
     private LinkedList<Seat> cart;
     private Account activeAccount;
 
@@ -31,13 +28,15 @@ public class TicketSystem {
     
     @GetMapping("/test")
     public String apiTest() {
-        
+        AccountService service = new AccountService();
         Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
 
-        service.createAccount(testAccount);
+        
         try {
+            service.createAccount(testAccount);
             return service.findSingleAccount(123456).toString();
         } catch(Exception e) {
+            System.out.println("ERROR STUPID IDIOT");
             e.printStackTrace();
             return "Error";
         }
@@ -80,4 +79,7 @@ public class TicketSystem {
     private void logOut() {
         setLoggedIn(false);
     }
+
+    // Account testaccount = new Account(123456, "Josn", "asdsa", "pass", "example@me.com");
+    // AccountService tester = new createAccount(testaccount);
 }
