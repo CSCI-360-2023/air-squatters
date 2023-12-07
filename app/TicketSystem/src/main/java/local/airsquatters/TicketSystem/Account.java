@@ -34,6 +34,10 @@ public class Account {
         this.tickets = new LinkedList<Ticket>();
         this.loggedIn = false;
     }
+
+    public Integer getCofcId() {
+        return Integer.valueOf(this.cofcId);
+    }
     @Override
     public String toString() {
         return "Account \nName: " + this.getFirstName() + " " + this.getLastName() + "\nEmail: " + this.getEmail();
