@@ -63,6 +63,28 @@
   			<artifactId>stripe-java</artifactId>
   			<version>24.2.0</version>
 		</dependency>
+		<dependency>
+    		<groupId>org.apache.spark</groupId>
+    		<artifactId>spark-core_2.13</artifactId>
+    		<version>3.5.0</version>
+		</dependency>
+		<dependencies>
+  <dependency>
+    <groupId>org.mongodb.spark</groupId>
+    <artifactId>mongo-spark-connector_2.12</artifactId>
+    <version>10.2.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_2.12</artifactId>
+    <version>3.3.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-sql_2.12</artifactId>
+    <version>3.3.1</version>
+  </dependency>
+</dependencies>
 	</dependencies>
 
 	<build>

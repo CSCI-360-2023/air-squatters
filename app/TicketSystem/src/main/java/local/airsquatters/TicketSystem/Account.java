@@ -16,15 +16,24 @@ import lombok.NoArgsConstructor;
 public class Account {
     @Id
     private Integer cofcId;
+    private int cofcNum;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
     private LinkedList<Ticket> tickets;
 
-    public Account(Integer cofcId, String password, String email) {
-        this.cofcId = cofcId;
+    public Account(int cofcId, String firstName, String lastName, String password, String email) {
+        this.cofcNum = cofcId;
+        this.cofcId = Integer.valueOf(cofcId);
         this.password = password;
         this.email = email;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.tickets = new LinkedList<Ticket>();
     }
-
+    @Override
+    public String toString() {
+        return "Account \nName: " + this.getFirstName() + " " + this.getLastName() + "\nEmail: " + this.getEmail();
+    }
 }

@@ -23,8 +23,8 @@ public class AccountService {
         return accountRepository.findAccountByCofcId(cofcId);
     }
 
-    public Account createAccount(int cofcId, String password, String email) {
-        Account account = new Account(cofcId, password, email);
+    public Account createAccount(int cofcId, String firstName, String lastName, String password, String email) {
+        Account account = new Account(cofcId, firstName, lastName, password, email);
         accountRepository.insert(account);
 
         mongoTemplate.update(Account.class)
