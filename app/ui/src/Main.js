@@ -25,7 +25,9 @@ function App() {
         </AppBar>
         <div class="center">Search:
             <input type="Text" placeholder="Search for Events" readonly></input>
-            <button>Search</button>
+            <button onClick={() => {navigate('/results')}}>Search</button>
+            <br/>
+            <button onClick={() => {navigate('/purchase')}}color="inherit">Buy Now</button>
             <br/>
             <button onClick={() => {navigate('/')}}>Log out</button>
         </div>
