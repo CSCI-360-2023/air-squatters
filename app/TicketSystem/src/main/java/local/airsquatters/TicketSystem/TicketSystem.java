@@ -36,25 +36,26 @@ public class TicketSystem {
         for (int i = 0; i < accountLinkedList.size(); i++) {
             if (cofcID == accountLinkedList.get(i).getCofcId() && password == accountLinkedList.get(i).getPassword()) {
                 accountLinkedList.get(i).setLoggedIn(true);
+                activeAccount = accountLinkedList.get(i);
             }
             else {
                 System.out.println("Invalid username and or password");
             }
         }
     }
-
-    public String purchaseTickets(Account account, Event event, int num) {
+    //TODO WHAT IF THEY BUY MORE THAN ONE??
+    public String purchaseTickets(Event event, int num) {
         PaymentVerification checker = new PaymentVerification();
         boolean bool = checker.checkPayment();
         Seat tempSeat = new Seat();
         Ticket tick = new Ticket(event, tempSeat);
-        if (account.isLoggedIn() == true) {
-            if (bool == true) {
-                account.getTickets().add(tick);
+        if (activeAccount.isLoggedIn() == true) {
+            if (bool == false) {
+                activeAccount.getTickets().add(tick);
                 int temp = event.getInventory() - num;
                 event.setInventory(temp);
                 //TODO ADD SEND RECEIPT - DISPLAY ON THE SCREEN
-                Reciept receipt = new Reciept(account, event, num);
+                Reciept receipt = new Reciept(activeAccount, event, num);
                 receipt.createReceipt();
 
                 return "Payment Success";
@@ -72,17 +73,12 @@ public class TicketSystem {
     public ArrayList<Event> searchForEvents(String string) {
             ArrayList<Event> eventArrayList = new ArrayList<Event>();
             for (int i = 0; i < eventLinkedList.size(); i++) {
-                if ( eventLinkedList.get(i).toString.toLowerCase().contains(string.toLowerCase()) ) {
+                if ( eventLinkedList.get(i).toString().toLowerCase().contains(string.toLowerCase()) ) {
                     eventArrayList.add(eventLinkedList.get(i));
                 }
             }
             return eventArrayList;
     }
-
-
-
-
-
 
 
     public static void main(String[] args) { SpringApplication.run(TicketSystem.class, args); }
@@ -108,29 +104,5 @@ public class TicketSystem {
         }
     }
 
-    // TODO SWITCH TO TRY CATCH
-    public void checkUserPass(Integer cofcID, String password) {
-        boolean userQuery;
-        if (cofcID == accountservice.findSingleAccount(cofcID).getCofCId()) {
-            logIn();
-        }
-        else {
-            System.out.println("NO MATCH FOUND");
-        }
 
-    }
-
-    private void setLoggedIn(boolean bool) {
-        this.loggedIn = bool;
-    }
-
-    private void logIn() {
-        setLoggedIn(true);
-    }
-
-    private void logOut() {
-        setLoggedIn(false);
-    }
-
-    
 }
