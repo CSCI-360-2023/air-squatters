@@ -30,6 +30,7 @@ public class TicketSystem {
         for (int i = 0; i < accountLinkedList.size(); i++) {
             if (accountLinkedList.get(i).getCofcId == cofcId) {
                 System.out.println("CofCID already in use");
+                break;
             }
         }
         Account temp = new Account(cofcId, firstName, lastName, password, email);
