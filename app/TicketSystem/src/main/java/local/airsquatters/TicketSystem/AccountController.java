@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stripe.service.AccountService;
+
 @RestController
 @RequestMapping(value = "/")
 public class AccountController {
@@ -39,6 +44,21 @@ public class AccountController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Account addNewUsers(@RequestBody Account account) {
+//         Account u = new Account();
+//         u.setFirstName(account.getFirstName());
+//         u.setLastName(account.getLastName());
+//         u.setEmail(account.getEmail());
+
+// ObjectMapper mapper = new ObjectMapper();
+    
+//     try {
+//         // convert user object to json string and return it 
+//         mapper.writeValueAsString(u);
+//     }
+//     catch (JsonGenerationException | JsonMappingException  e) {
+//         // catch various errors
+//         e.printStackTrace();
+//     }
 	    LOG.info("Saving account.");
 	    return accountService.createAccount(account);
     }
