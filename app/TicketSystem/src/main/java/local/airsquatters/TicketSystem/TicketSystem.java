@@ -57,6 +57,9 @@ public class TicketSystem {
         }
     }
     public String purchaseTickets(Event event, int num) {
+        if (event.getInventory() < num) {
+            break;
+        }
         PaymentVerification checker = new PaymentVerification();
         boolean bool = checker.checkPayment();
         Seat tempSeat = new Seat();
