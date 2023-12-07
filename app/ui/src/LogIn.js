@@ -20,8 +20,9 @@ function LogIn() {
         <br/>
         <button onClick={() => {navigate('/main')}}>Log In</button>
         <br/>
-        <button onClick={() => {navigate('/signup')}}>Sign Up</button>
+        <button onClick={() => {navigate('/signup')}}>   Sign Up</button>
       </div>
     );
 }
+// NEED TO GET THE DATA FROM HERE AND PUSH IT TO THE DATABASE
 export default LogIn;
