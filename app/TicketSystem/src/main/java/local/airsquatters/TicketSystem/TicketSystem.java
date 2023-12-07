@@ -31,10 +31,12 @@ public class TicketSystem {
         AccountService service = new AccountService();
         Account testAccount = new Account(123456, "John", "Smith", "abcdefg", "example@new.com");
 
-        service.createAccount(testAccount);
+        
         try {
+            service.createAccount(testAccount);
             return service.findSingleAccount(123456).toString();
         } catch(Exception e) {
+            System.out.println("ERROR STUPID IDIOT");
             e.printStackTrace();
             return "Error";
         }
@@ -77,4 +79,7 @@ public class TicketSystem {
     private void logOut() {
         setLoggedIn(false);
     }
+
+    // Account testaccount = new Account(123456, "Josn", "asdsa", "pass", "example@me.com");
+    // AccountService tester = new createAccount(testaccount);
 }

@@ -50,7 +50,5 @@ public class AccountService {
         }
         return account;
     }
-    Account testaccount = new Account(123456, "Josn", "asdsa", "pass", "example@me.com");
-    AccountService tester = new createAccount(testaccount);
-
+    
 }
