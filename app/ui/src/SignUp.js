@@ -22,12 +22,6 @@ const errorMessage = (error) => {
 
 import React, { useState, useEffect } from 'react';
 import PasswordChecklist from "react-password-checklist"
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function SignUp() {
