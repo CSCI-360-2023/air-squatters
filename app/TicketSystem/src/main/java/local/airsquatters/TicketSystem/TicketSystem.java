@@ -20,9 +20,9 @@ public class TicketSystem {
     
     
 
-    // TODO CREATE EVENT ARRAYLIST, NEED TO FILL THAT BITCH UP
+    // TODO CREATE EVENT ARRAYLIST
     LinkedList<Event> eventLinkedList = new LinkedList<Event>();
-    // NEW SHIT
+    // NEW 
     LinkedList<Account> accountLinkedList = new LinkedList<Account>();
 
 
