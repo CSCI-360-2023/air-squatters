@@ -11,7 +11,6 @@ import PurchasePage from './PurchaseTickets.js'
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<LogInPage/>}/>
@@ -22,5 +21,4 @@ root.render(
         <Route path='/purchase' element={<PurchasePage/>}/>
       </Routes>
     </BrowserRouter>
-  </StrictMode>
 );

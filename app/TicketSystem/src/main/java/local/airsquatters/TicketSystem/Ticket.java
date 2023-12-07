@@ -75,6 +75,7 @@ public final class Ticket {
     public String toString() {
         return "Event: " + this.getEvent() +
             "\nOwner: " + this.getOwner().toString() +
-            "\nTicket Number: " + this.getTicketNumber();
+            "\nTicket Number: " + this.getTicketNumber() +
+            "\nSeat: " + this.seat.toString();
     }
 }
