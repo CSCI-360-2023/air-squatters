@@ -43,7 +43,6 @@ public class TicketSystem {
             }
         }
     }
-    //TODO WHAT IF THEY BUY MORE THAN ONE??
     public String purchaseTickets(Event event, int num) {
         PaymentVerification checker = new PaymentVerification();
         boolean bool = checker.checkPayment();
@@ -51,7 +50,9 @@ public class TicketSystem {
         Ticket tick = new Ticket(event, tempSeat);
         if (activeAccount.isLoggedIn() == true) {
             if (bool == false) {
-                activeAccount.getTickets().add(tick);
+                for (int i = 0; i < num; i++) {
+                    activeAccount.getTickets().add(tick);
+                }
                 int temp = event.getInventory() - num;
                 event.setInventory(temp);
                 //TODO ADD SEND RECEIPT - DISPLAY ON THE SCREEN
